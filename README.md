@@ -42,6 +42,7 @@ Redux Toolkit is useful here because product and cart data have multiple actions
 - Light and dark themes
 - Loading, empty, and error states
 - Responsive mobile layout
+- Demo checkout page and order confirmation (no data storage or payment processing)
 
 ## Run locally
 

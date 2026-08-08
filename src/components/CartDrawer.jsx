@@ -1,4 +1,5 @@
 import { Minus, Plus, ShoppingBag, Trash2, X } from 'lucide-react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   clearCart,
@@ -8,11 +9,18 @@ import {
   removeFromCart,
   selectCartSubtotal,
 } from '../features/cart/cartSlice';
+import CheckoutModal from './CheckoutModal';
 
 export default function CartDrawer() {
   const dispatch = useDispatch();
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
   const { items, isOpen } = useSelector((state) => state.cart);
   const subtotal = useSelector(selectCartSubtotal);
+
+  function beginCheckout() {
+    dispatch(closeCart());
+    setCheckoutOpen(true);
+  }
 
   return (
     <>
@@ -49,10 +57,11 @@ export default function CartDrawer() {
             <button className="clear-cart" onClick={() => dispatch(clearCart())}>Clear bag</button>
             <div className="total-row"><span>Subtotal</span><strong>${subtotal.toFixed(2)}</strong></div>
             <p>Taxes and delivery calculated at checkout.</p>
-            <button className="checkout-button">Continue to checkout</button>
+            <button className="checkout-button" onClick={beginCheckout}>Continue to checkout</button>
           </div>
         )}
       </aside>
+      <CheckoutModal isOpen={checkoutOpen} onClose={() => setCheckoutOpen(false)} />
     </>
   );
 }
