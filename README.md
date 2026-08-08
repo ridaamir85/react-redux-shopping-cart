@@ -59,6 +59,12 @@ Open the local URL shown by Vite.
 npm run build
 ```
 
+## Live site
+
+The app is configured for automatic GitHub Pages deployment. Every push to `main` builds and publishes the latest version through `.github/workflows/deploy-pages.yml`.
+
+Live URL: `https://ridaamir85.github.io/react-redux-shopping-cart/`
+
 ## Technology
 
 - React
